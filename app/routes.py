@@ -46,7 +46,9 @@ def logout():
 @app.route('/book')
 def book():
    id=request.args.get('id')
-   return redirect('/index')
+   posts=Post.query.all()
+   book=Book.query.get(id)
+   return render_template('book.html',posts=posts,book=book,id=int(id))
 
 @app.route('/delete')
 @login_required
