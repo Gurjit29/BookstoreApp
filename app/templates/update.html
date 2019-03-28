@@ -1,0 +1,26 @@
+
+
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <h1>Hi {{current_user.username }}</h1>
+
+    {% for post in posts %}
+       
+       {% if (post.id != id)  %}
+        <div><p><i>{{ post.body }}</i></p></div>
+       <footer> <div><u><i>Written By: {{post.author.username}}</u></i></footer>
+       {% else %}
+       <h3>Update Post:</h3>
+       <form action="/modify?id={{id}}" method="POST">
+      
+      
+      <b>Updated Body: </b> <input name="body" style="height:100px"><br><br>
+      <input type="Submit">
+      </form>
+      <hr>
+     {% endif %}
+   {% endfor %}
+ 
+{% endblock %}
