@@ -3,15 +3,16 @@
 
 
 {% block content %}
-
- <img src="{{book.url}}" alt=book image height="600px" width="450px"><br>
+ 
+ <img src="{{book.url}}" alt=book height="600px" width="450px"><br>
  <b>Title: </b> {{book.title}}<br>
 <b>About Book: </b> {{book.description}}<br>
 <b>Price: $</b>{{book.cost}}<br>
 <b>Copies left: </b> {{book.quantity}}<br><br><br>
 <b>Reviews about book : </b><br><br><br>
  {% for post in posts %}
-     {% if (post.review.id == bookId) %}
+    {{post.review.id}} v/s {{id}}<br>
+     {% if (post.review.id != id) %}
      <div>{{post.body}}<br> ------------------by {{post.author.username}}</div>
       {% else %}
        <h3>Update Post:</h3>

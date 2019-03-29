@@ -85,7 +85,8 @@ def update():
     id=request.args.get('id')
     bookId=request.args.get('bookId')
     posts=Post.query.all()
-    return render_template('update.html',posts=posts,id=int(id),bookId=int(bookId))
+    book=Book.query.filter_by(id=bookId).first()
+    return render_template('update.html',book=book,posts=posts,id=int(id),bookId=int(bookId))
  
 
 
