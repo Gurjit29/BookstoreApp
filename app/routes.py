@@ -47,7 +47,8 @@ def logout():
 def book():
    id=request.args.get('id')
    posts=Post.query.all()
-   book=Book.query.get(id)
+   book=Book.query.filter_by(id=bookId).first()
+
    return render_template('book.html',posts=posts,book=book,id=int(id))
 
 @app.route('/delete')
@@ -59,22 +60,23 @@ def delete():
      db.session.delete(post)
      db.session.commit()
      posts=Post.query.all()
-     book=Book.query.get(bookId)
+     book=Book.query.filter_by(id=bookId).first()
      return render_template('book.html',posts=posts,book=book,id=int(bookId))
    
 
 @app.route('/add', methods=['POST'])
 def add():
-     
+     bookId=request.args.get('bookId')
+     book=Book.query.filter_by(id=bookId).first()
      body=request.form['body']
      users=User.query.all()
      for u in users:
         if u.username == current_user.username:
-           newPost=Post(body=body,author=u)
+           newPost=Post(body=body,author=u,review=book)
            db.session.add(newPost)
            db.session.commit()
            break;
-     return redirect ('/index')
+     return redirect ('/book')
 
 @app.route('/update')
 @login_required
@@ -82,7 +84,7 @@ def update():
     id=request.args.get('id')
     bookId=request.args.get('bookId')
     posts=Post.query.all()
-    return render_template('update.html',posts=posts,id=int(id),bookId=bookId)
+    return render_template('update.html',posts=posts,id=int(id),bookId=int(bookId))
  
 
 

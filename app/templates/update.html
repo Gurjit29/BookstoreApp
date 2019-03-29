@@ -1,19 +1,21 @@
 
-
 {% extends "base.html" %}
 
-{% block content %}
-    
-    <h1>Hi {{current_user.username }}</h1>
 
-    {% for post in posts %}
-       
-       {% if (post.id != id)  %}
-        <div><p><i>{{ post.body }}</i></p></div>
-       <footer> <div><u><i>Written By: {{post.author.username}}</u></i></footer>
-       {% else %}
+{% block content %}
+
+ <img src="{{book.url}}" alt=book image height="600px" width="450px"><br>
+ <b>Title: </b> {{book.title}}<br>
+<b>About Book: </b> {{book.description}}<br>
+<b>Price: $</b>{{book.cost}}<br>
+<b>Copies left: </b> {{book.quantity}}<br><br><br>
+<b>Reviews about book : </b><br><br><br>
+ {% for post in posts %}
+     {% if (post.review.id == bookId) %}
+     <div>{{post.body}}<br> ------------------by {{post.author.username}}</div>
+      {% else %}
        <h3>Update Post:</h3>
-       <form action="/modify?id={{id}}" method="POST">
+       <form action="/modify?bookId={{bookId}}&id={{id}}" method="POST">
       
       
       <b>Updated Body: </b> <input name="body" style="height:100px"><br><br>

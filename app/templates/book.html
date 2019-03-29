@@ -3,7 +3,7 @@
 
 {% block content %}
 
- <img src="{{book.url}}" alt=book image><br>
+ <img src="{{book.url}}" alt=book image height="600px" width="450px"><br>
  <b>Title: </b> {{book.title}}<br>
 <b>About Book: </b> {{book.description}}<br>
 <b>Price: $</b>{{book.cost}}<br>
@@ -12,11 +12,18 @@
  {% for post in posts %}
      {% if (post.review.id == id) %}
      <div>{{post.body}}<br> ------------------by {{post.author.username}}</div>
+     {%if (current_user.username==post.author.username) %}
+
       <a href="/delete?id={{post.id}}&bookId={{id}}" style="color:red" >Delete</a>
     <a href="/update?id={{post.id}}&bookId={{id}}" style="color:blue">Update</a>
-
+     {% endif %}
      {% endif %}
 {% endfor %}
+   <h3>Post a new blog</h3>
+  <form action="/add?bookId={{id}}" method="POST">
+  <b>Content:  </b>         <input name="body" style="height:100px"><br><br>
+  <input type="Submit">
+  </form>
 
 
 
