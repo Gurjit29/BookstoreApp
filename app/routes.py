@@ -53,11 +53,15 @@ def book():
 @app.route('/delete')
 @login_required
 def delete():
+     bookId=request.args.get('bookId')
      id=request.args.get('id')
      post=Post.query.get(id)
      db.session.delete(post)
      db.session.commit()
-     return redirect('/index')   
+     posts=Post.query.all()
+     book=Book.query.get(bookId)
+     return render_template('book.html',posts=posts,book=book,id=int(bookId))
+   
 
 @app.route('/add', methods=['POST'])
 def add():
@@ -76,8 +80,9 @@ def add():
 @login_required
 def update():
     id=request.args.get('id')
+    bookId=request.args.get('bookId')
     posts=Post.query.all()
-    return render_template('update.html',posts=posts,id=int(id))
+    return render_template('update.html',posts=posts,id=int(id),bookId=bookId)
  
 
 

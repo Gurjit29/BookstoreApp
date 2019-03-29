@@ -12,6 +12,9 @@
  {% for post in posts %}
      {% if (post.review.id == id) %}
      <div>{{post.body}}<br> ------------------by {{post.author.username}}</div>
+      <a href="/delete?id={{post.id}}&bookId={{id}}" style="color:red" >Delete</a>
+    <a href="/update?id={{post.id}}&bookId={{id}}" style="color:blue">Update</a>
+
      {% endif %}
 {% endfor %}
 
