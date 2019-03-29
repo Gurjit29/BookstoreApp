@@ -47,7 +47,7 @@ def logout():
 def book():
    id=request.args.get('id')
    posts=Post.query.all()
-   book=Book.query.filter_by(id=bookId).first()
+   book=Book.query.filter_by(id=id).first()
 
    return render_template('book.html',posts=posts,book=book,id=int(id))
 
@@ -76,7 +76,8 @@ def add():
            db.session.add(newPost)
            db.session.commit()
            break;
-     return redirect ('/book')
+     posts=Post.query.all()
+     return render_template('book.html',posts=posts,book=book,id=int(bookId))
 
 @app.route('/update')
 @login_required
