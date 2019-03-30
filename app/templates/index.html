@@ -12,21 +12,5 @@
     </a>
     {% endfor %}    
 
-    {% for post in posts %}
-        <div><p><i>{{ post.body }}</i></p></div>
-       <footer> <div><u><i>Written By: {{post.author.username}}</u></i></footer>
-   {%if (current_user.username==post.author.username) %}
-    <a href="/delete?id={{post.id}}" style="color:red" >Delete</a>
-    <a href="/update?id={{post.id}}" style="color:blue">Update</a>
-    {%endif%}
-    <hr>
-     {% endfor %}
-  
-  <h3>Post a new blog</h3>
-  <form action="/add" method="POST">
-  <b>Content:  </b>         <input name="body" style="height:100px"><br><br>
-  <input type="Submit">
-  </form>
-  
-{% endblock %}
+    {% endblock %}
 
