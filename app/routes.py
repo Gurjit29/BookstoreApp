@@ -94,15 +94,18 @@ def update():
 @login_required
 def modify():
     id=request.args.get('id')
+    bookId=request.args.get('bookId')
     body=request.form['body']
     post=Post.query.get(id)
     db.session.delete(post)
     db.session.commit()
     user=User.query.filter_by(username=current_user.username).first()
-    post=Post(body=body,id=id,author=user)
+    book=Book.query.filter_by(id=bookId).first()
+    post=Post(body=body,id=id,author=user,review=book)
     db.session.add(post)
     db.session.commit()
-    return redirect('/index') 
+    posts=Post.query.all()
+    return render_template('book.html',posts=posts,book=book,id=int(bookId))
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():

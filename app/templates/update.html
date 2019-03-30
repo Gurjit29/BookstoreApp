@@ -11,19 +11,18 @@
 <b>Copies left: </b> {{book.quantity}}<br><br><br>
 <b>Reviews about book : </b><br><br><br>
  {% for post in posts %}
-    {{post.review.id}} v/s {{id}}<br>
-     {% if (post.review.id != id) %}
+    {% if (post.review.title == book.title) %}
+     {% if (post.id ==id) %}
+     <h3>Update Post:</h3>
+     <form action="/modify?bookId={{bookId}}&id={{id}}" method="POST">
+    <b>Updated Body: </b> <input name="body" style="height:100px"><br><br>
+    <input type="Submit">
+    </form>
+    {% else %}
      <div>{{post.body}}<br> ------------------by {{post.author.username}}</div>
-      {% else %}
-       <h3>Update Post:</h3>
-       <form action="/modify?bookId={{bookId}}&id={{id}}" method="POST">
-      
-      
-      <b>Updated Body: </b> <input name="body" style="height:100px"><br><br>
-      <input type="Submit">
-      </form>
-      <hr>
-     {% endif %}
+     {% endif %} 
+   {% endif %}
+   <hr>
    {% endfor %}
  
 {% endblock %}

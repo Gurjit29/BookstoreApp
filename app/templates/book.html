@@ -10,11 +10,12 @@
 <b>Copies left: </b> {{book.quantity}}<br><br><br>
 <b>Reviews about book : </b><br><br><br>
  {% for post in posts %}
-     {% if (post.review.id == id) %}
+<hr>    
+ {% if (post.review.id == id) %}
      <div>{{post.body}}<br> ------------------by {{post.author.username}}</div>
-     {%if (current_user.username==post.author.username) %}
+     {%if (current_user.username == post.author.username) %}
 
-      <a href="/delete?id={{post.id}}&bookId={{id}}" style="color:red" >Delete</a>
+    <a href="/delete?id={{post.id}}&bookId={{id}}" style="color:red" >Delete</a>
     <a href="/update?id={{post.id}}&bookId={{id}}" style="color:blue">Update</a>
      {% endif %}
      {% endif %}
