@@ -1,5 +1,7 @@
 from flask import render_template,flash,redirect
-from app import app
+from app import app,mail
+from flask_mail import Mail
+from flask_mail import Message
 from app.forms import LoginForm,RegistrationForm
 from flask_login import current_user, login_user
 from app import db
@@ -13,6 +15,9 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 #..@login_required
 def index():
+   msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=["GurjitSingh.Khatkar@student.ufv.ca","NavneetJhangra07@gmail.com"])
+   msg.body="How are you??"
+   mail.send(msg)
    posts=Post.query.all()
    books=Book.query.all()
    if current_user.is_authenticated:
