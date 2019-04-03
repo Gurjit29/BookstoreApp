@@ -10,15 +10,15 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class PasswordResetForm(FlaskForm):
-    email=StringField('Email',validators=[DataRequired(),Email()])
-    email2=StringField('Confirm Email',validators=[DataRequired(),EqualTo('email')])
+    email=StringField('Email',validators=[DataRequired()])
+    submit=SubmitField('Send Link')
 
     def validate_email(self,email):
         user=User.query.filter_by(email=email.data).first()
         if user is None:
              raise ValidationError('???Really Bro')
-
    
+       
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
