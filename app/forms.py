@@ -9,6 +9,17 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+class PasswordResetForm(FlaskForm):
+    email=StringField('Email',validators=[DataRequired(),Email()])
+    email2=StringField('Confirm Email',validators=[DataRequired(),EqualTo('email')])
+
+    def validate_email(self,email):
+        user=User.query.filter_by(email=email.data).first()
+        if user is None:
+             raise ValidationError('???Really Bro')
+
+   
+
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])

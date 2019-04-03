@@ -2,7 +2,7 @@ from flask import render_template,flash,redirect
 from app import app,mail
 from flask_mail import Mail
 from flask_mail import Message
-from app.forms import LoginForm,RegistrationForm
+from app.forms import LoginForm,RegistrationForm,PasswordResetForm
 from flask_login import current_user, login_user
 from app import db
 from app.models import User,Post,Book
@@ -15,7 +15,7 @@ from werkzeug.urls import url_parse
 @app.route('/index')
 #..@login_required
 def index():
-   msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=["GurjitSingh.Khatkar@student.ufv.ca","NavneetJhangra07@gmail.com"])
+   msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=["NavneetJhangra07@gmail.com"])
    msg.body="How are you??"
    mail.send(msg)
    posts=Post.query.all()
@@ -111,6 +111,13 @@ def modify():
     db.session.commit()
     posts=Post.query.all()
     return render_template('book.html',posts=posts,book=book,id=int(bookId))
+
+@app.route('/passwordReset',methods=['GET','POST'])
+def passwordReset():
+   form=PasswordResetForm()
+   if form.validate_on_submit():
+         return "Oh"
+   return "Watch out"    
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
