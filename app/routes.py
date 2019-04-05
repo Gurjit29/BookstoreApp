@@ -3,7 +3,7 @@ from flask import render_template,flash,redirect,url_for
 from app import app,mail
 from flask_mail import Mail
 from flask_mail import Message
-from app.forms import LoginForm,RegistrationForm,PasswordResetForm
+from app.forms import LoginForm,RegistrationForm,PasswordResetForm,RecoverForm
 from flask_login import current_user, login_user
 from app import db
 from app.models import User,Post,Book
@@ -116,7 +116,7 @@ def passwordReset():
    form=PasswordResetForm()
    if form.validate_on_submit():
      user=User.query.filter_by(email=form.email.data).first()
-     msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=[user.email],html=render_template('verify.html'))
+     msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=[user.email],html=render_template('verify.html',email=user.email,username=user.username))
      mail.send(msg)
      return "Message sent!"        
    return render_template('password.html',form=form)   
@@ -134,3 +134,19 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect("/login")
     return render_template('register.html', title='Register', form=form)        
+
+@app.route('/recover', methods=['GET', 'POST'])
+def recover():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RecoverForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Your password has been reset!')
+        return redirect("/login")
+    return render_template('recover.html',title='Reset Password',form=form)
+
+
