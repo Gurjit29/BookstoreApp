@@ -33,6 +33,7 @@ class Post(db.Model):
 
 class Book(db.Model):
    id=db.Column(db.Integer, primary_key=True)
+   writer=db.Column(db.String(100))
    title=db.Column(db.String(100))
    description=db.Column(db.String(350))
    url=db.Column(db.String(150))

@@ -1,5 +1,5 @@
 
-from flask import render_template,flash,redirect
+from flask import render_template,flash,redirect,url_for
 from app import app,mail
 from flask_mail import Mail
 from flask_mail import Message
@@ -11,7 +11,7 @@ from flask_login import logout_user
 from flask_login import login_required
 from flask import request
 from werkzeug.urls import url_parse
-
+from itsdangerous import URLSafeTimedSerializer
 @app.route('/')
 @app.route('/index')
 #..@login_required
@@ -116,8 +116,7 @@ def passwordReset():
    form=PasswordResetForm()
    if form.validate_on_submit():
      user=User.query.filter_by(email=form.email.data).first()
-     msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=[user.email])
-     msg.body={{url_for('/index')}}
+     msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=[user.email],html=render_template('verify.html'))
      mail.send(msg)
      return "Message sent!"        
    return render_template('password.html',form=form)   
