@@ -1,16 +1,40 @@
 
-
 {% extends "base.html" %}
 
 
 {% block content %}
     
-    <h1>Hi {{current_user.username }}</h1>
+<div class="jumbotron text-center">
+    <h1>Welcome {{current_user.username }}</h1>
+</div>
+
+<div class="container-fluid bg-3 text-center">
+    <h3>New Books</h3><br>
+    <div class="row">
     {% for book in books %}
-    <a href="/book?id={{book.id}}">
-    <img src="{{book.url}}" alt="Book Image" height="600px" width="450px" >
+    <div class="col-sm-3">
+        <h5>{{book.title}}</h5>
+        <a href="/book?id={{book.id}}">
+        <img src="{{book.url}}" class="img-responsive"
+        style="width:25%" alt="Book Image">
     </a>
-    {% endfor %}    
+    </div>
+    {% endfor %}
+    </div>
+</div>
 
-    {% endblock %}
+<div class="container-fluid bg-2 text-center">
+    <h3>Top Picks</h3><br>
+    <div class="row">
+    {% for book in books %}
+    <div class="col-sm-3">
+        <h5>{{book.title}}</h5>
+        <a href="/book?id={{book.id}}">
+        <img src="{{book.url}}" class="img-responsive" style="width:25%" alt="Book Image">
+        </a>
+    </div>
+    {% endfor %}
+    </div>
+</div>
 
+{% endblock %}
