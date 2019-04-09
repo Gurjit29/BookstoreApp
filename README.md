@@ -18,11 +18,11 @@ Planned Technologies
 
 Colors
 --------------------
-#B3A20C - Complementary Gold
-#FFEC45 - Complementary Yellow
-#FFEA2B - Main Color
-#6953B8 - Complementary Grayish Purple
-#5A2BFF - Complementary Blueish Purple
+* #B3A20C - Complementary Gold
+* #FFEC45 - Complementary Yellow
+* #FFEA2B - Main Color
+* #6953B8 - Complementary Grayish Purple
+* #5A2BFF - Complementary Blueish Purple
 
 References for Code
 -------------------
