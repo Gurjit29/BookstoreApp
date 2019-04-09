@@ -12,7 +12,8 @@ footer {
     height: 100px;
     overflow-y: hidden;
 }
-.frame{
+
+.frame {
     padding: 5px;
     margin: 2px;
     border-top-style: solid;
@@ -20,4 +21,20 @@ footer {
     border-top-width: 2px;
     border-bottom-width: 2px;
     border-color: #B3A20C;
+}
+
+/* unvisted link */ 
+a:link {
+    text-decoration: none;
+    color: black;
+}
+/* visted link */
+a:visited{
+    text-decoration: none;
+    color: #6953B8;
+}
+
+/* mouse over link */
+a:hover{
+    color: #B3A20C;
 }
