@@ -42,10 +42,18 @@ class RegistrationForm(FlaskForm):
 class RecoverForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     email = StringField('Email', validators=[DataRequired(), Email()])
+    token = StringField('Secret Token',validators=[DataRequired()])
     password = PasswordField('New Password', validators=[DataRequired()])
     password2 = PasswordField(
         'Confirm Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
+
+    def validate_token(self, token):
+        user=User.query.filter_by(key=token.data).first()
+        #print('key is ---- ',user.key)
+        print(token.data)
+        if user is None:
+            raise ValidationError('Well, I am not stupid! I just gave you a system generated key?')
 
     def validate_username(self, username):
         user = User.query.filter_by(username=username.data).first()

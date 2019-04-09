@@ -18,6 +18,13 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+    <p>
+            {{ form.token.label }}<br>
+            {{ form.token(size=64) }}<br>
+            {% for error in form.token.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+    </p>
 	<p>
             {{ form.password.label }}<br>
             {{ form.password(size=32) }}<br>
@@ -25,6 +32,7 @@
             <span style="color: red;">[{{ error }}]</span>
             {% endfor %}
         </p>
+    
 	<p>
             {{ form.password2.label }}<br>
             {{ form.password2(size=32) }}<br>
