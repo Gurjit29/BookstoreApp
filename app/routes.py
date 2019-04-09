@@ -11,7 +11,8 @@ from flask_login import logout_user
 from flask_login import login_required
 from flask import request
 from werkzeug.urls import url_parse
-from itsdangerous import URLSafeTimedSerializer
+import random
+from random import randrange
 @app.route('/')
 @app.route('/index')
 #..@login_required
@@ -21,7 +22,7 @@ def index():
    books=Book.query.all()
    if current_user.is_authenticated:
      return render_template("index.html", title='Home Page',books=books, posts=posts)
-   return render_template("preview.html",title='Preview',books=books,posts=posts)
+   return render_template("index.html",title='Preview',books=books,posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -48,6 +49,7 @@ def logout():
 	return redirect('/index')
 
 @app.route('/book')
+@login_required
 def book():
    id=request.args.get('id')
    posts=Post.query.all()
@@ -115,11 +117,17 @@ def modify():
 def passwordReset():
    form=PasswordResetForm()
    if form.validate_on_submit():
+     key=random.randrange(1,100000000)
+    
      user=User.query.filter_by(email=form.email.data).first()
-     msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=[user.email],html=render_template('verify.html',email=user.email,username=user.username))
+     user.key=key
+     db.session.add(user)
+     db.session.commit()
+     print('USER ---key is ',user.key,' ------- ',user.username)
+     msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=[user.email],html=render_template('verify.html',email=user.email,username=user.username,key=key))
      mail.send(msg)
      return "Message sent!"        
-   return render_template('password.html',form=form)   
+   return render_template('password.html',form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -137,16 +145,18 @@ def register():
 
 @app.route('/recover', methods=['GET', 'POST'])
 def recover():
+    key=request.args.get('key')
+    print (key)
     if current_user.is_authenticated:
         return redirect(url_for('index'))
     form = RecoverForm()
-    if form.validate_on_submit():
+    if form.validate_on_submit() :
         user = User.query.filter_by(email=form.email.data).first()
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
         flash('Your password has been reset!')
         return redirect("/login")
-    return render_template('recover.html',title='Reset Password',form=form)
+    return render_template('recover.html',title='Reset Password',form=form,key=key)
 
 

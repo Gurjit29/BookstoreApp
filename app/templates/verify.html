@@ -5,6 +5,9 @@ Verify It is you!
 </title>
 </head>
 <body>
-<a href="http://127.0.0.1:5000/recover">Click here bro!</a>
+<div>Hi, {{username}} ! Please click on the following link to reset your password </div>
+<div> Here is your system generated key for resetting the password : <b>{{key}}</b></div>
+<a href="http://127.0.0.1:5000/recover?key={{key}}">Reset your password </a>
+<div>If this is not you, then you can safely ignore this email!</div>
 </body>
 </html>
