@@ -15,6 +15,20 @@
             background-color: #f2f2f2;
             padding: 25px;
         }
+
+        .custom-scrollbar {
+            height: 100px;
+            overflow-y: hidden;
+        }
+        .frame{
+            padding: 5px;
+            margin: 2px;
+            border-top-style: solid;
+            border-bottom-style: solid;
+            border-top-width: 2px;
+            border-bottom-width: 2px;
+            border-color: #B3A20C;
+        }
     </style>
 
     {% if title %}
@@ -27,14 +41,17 @@
     <body>
         <nav class="navbar navbar-inverse">
             <div class-"container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">BookStore</a>
-                    <ul class="nav navbar-nav">
-                        <a class="nabbar-brand"  href="/index">Home</a>
+                <div class="navbar-header">    
+                    <ul class="nav justify-content-left">
+                        <li class="nav-item"><a class="navbar-brand" href="#">BookStore</a></li>
+                    </ul>
+                    <ul class="nav justify-content-center">
+                        <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
+                        <li class="nav-tem"><a class="nav-link disabled" href="#">About</a></li>
 	                {%if current_user.is_anonymous%}
-                        <a href="/login">Login</a>
+                        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
                         {%else%}
-                        <a href="/logout"> Logout</a>
+                        <li class="nav-item"><a class="nav-link" href="/logout"> Logout</a></li>
                         {%endif%}
                     </ul>
                     </div>

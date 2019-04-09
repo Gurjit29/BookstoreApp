@@ -13,11 +13,20 @@ Planned Technologies
 * Docker/Docker-Compose
 * OAuth
 * Bootstrap
+* CKEditor
 * More ....
+
+Colors
+--------------------
+#B3A20C - Complementary Gold
+#FFEC45 - Complementary Yellow
+#FFEA2B - Main Color
+#6953B8 - Complementary Grayish Purple
+#5A2BFF - Complementary Blueish Purple
 
 References
 ----------
-*[Flask
+* [Flask
 MegaTutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
 * [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
 * [W3schools](https://www.w3schools.com/bootstrap/default.asp)

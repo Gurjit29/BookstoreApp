@@ -15,7 +15,7 @@
     <div class="col-sm-3">
         <h5>{{book.title}}</h5>
         <a href="/book?id={{book.id}}">
-        <img src="{{book.url}}" class="img-responsive"
+        <img class="mb-4" src="{{book.url}}" class="img-responsive"
         style="width:25%" alt="Book Image">
     </a>
     </div>
@@ -31,11 +31,28 @@
     <div class="col-sm-3">
         <h5>{{book.title}}</h5>
         <a href="/book?id={{book.id}}">
-        <img src="{{book.url}}" class="img-responsive" style="width:25%" alt="Book Image">
+        <img class="mb-4" src="{{book.url}}" class="img-responsive" style="width:25%" alt="Book Image">
         </a>
     </div>
     {% endfor %}
     </div>
+</div>
+
+<div class="list-unstyled">
+    {% for book in books %}
+    <div class="frame">
+        <li class="media">
+            <img class="mb-4 mr-4" src="{{book.url}}" class="img-responsive" style="width:10%" alt="Book Image">
+            <div class="media-body">
+                <h5 class="mt-0 mb-1">{{book.title}}</h5>
+                <div class="custom-scrollbar">
+                    {{book.description}}<br>
+                </div>
+            </div>
+            ${{book.cost}}<br>
+        </li>
+    </div>
+    {% endfor %}
 </div>
 
 {% endblock %}
