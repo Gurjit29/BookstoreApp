@@ -2,13 +2,16 @@
 
 
 {% block content %}
-
- <img src="{{book.url}}" alt=book image height="600px" width="450px"><br>
- <b>Title: </b> {{book.title}}<br>
+ <div class="container">
+ <img src="{{book.url}}" style="border:5px solid #EB2188 ;padding:3px" class="rounded mx-auto d-block" class="img-rounded"   alt=book image height=350px" width="300px"><br>
+  
+ <button type="button" class="btn btn-success" style="margin-right:15px"><b>Title:</b></button>{{book.title}}<br>
 <b>Written by : </b> {{book.writer}}<br>
 <b>About Book: </b> {{book.description}}<br>
 <b>Price: $</b>{{book.cost}}<br>
+
 <br><br>
+
 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
   <input type="hidden" name="cmd" value="_s-xclick">
   <input type="hidden" name="hosted_button_id" value="2V9A9FAX8TZFQ">
@@ -49,6 +52,6 @@
   <input type="Submit">
   </form>
 
-
+</div>
 
 {% endblock %}

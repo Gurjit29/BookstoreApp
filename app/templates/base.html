@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/custom.css"
-
+    <link rel="stylesheet" type="text/css" href="../static/styles/custom.css">
+    
     {% if title %}
     <title>{{ title }} - BookStore</title>
     {% else %}
@@ -13,25 +13,26 @@
     {% endif %}
  
 </head>
-    <body>
-        <nav class="navbar navbar-inverse">
-            <div class-"container-fluid">
-                <div class="navbar-header">    
-                    <ul class="nav justify-content-left">
-                        <li class="nav-item"><a class="navbar-brand" href="#">BookStore</a></li>
-                    </ul>
-                    <ul class="nav justify-content-center">
-                        <li class="nav-item"><a class="nav-link" href="/index">Home</a></li>
-                        <li class="nav-tem"><a class="nav-link disabled" href="#">About</a></li>
-	                {%if current_user.is_anonymous%}
-                        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
-                        {%else%}
-                        <li class="nav-item"><a class="nav-link" href="/logout"> Logout</a></li>
-                        {%endif%}
-                    </ul>
-                    </div>
-                </div>
-        </nav>
+    <body style="background-color:#444444;color:#EAEAEA " >
+    
+<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+<div class = "container">
+  <a class="navbar-brand" href="/index">Bookstore</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item  nav nav-link " href="/index">Home </a>
+      <a class="nav-item nav-link" href="#">About</a>
+        {%if current_user.is_anonymous%}
+      <a class="nav-item nav-link" href="/login">Login</a>
+  	{%else%}
+      <a class="nav-item nav-link " href="/logout">Logout</a>
+        {%endif%}
+    </div>
+  </div></div>
+</nav>
         <hr>
         {% with messages = get_flashed_messages() %}
         {% if messages %}

@@ -3,11 +3,9 @@
     border-radius: 0;
 }
 
-.nav a:hover{
+navbar a:hover{
 	color:#F30067;
 }
-.nav-item{
-	color:#F30067;}
 footer {
     background-color: #f2f2f2;
     padding: 25px;
