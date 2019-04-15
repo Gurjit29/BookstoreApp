@@ -3,12 +3,21 @@
 
 {% block content %}
  <div class="container">
- <img src="{{book.url}}" style="border:5px solid #EB2188 ;padding:3px" class="rounded mx-auto d-block" class="img-rounded"   alt=book image height=350px" width="300px"><br>
+    <img src="{{book.url}}" style="border:8px solid white;padding:5px" class="rounded mx-auto d-block" class="img-rounded"   alt=book image height=350px" width="300px"><br>
   
- <p style="text-align:justify"><button type="button" class="btn btn-success" ><b>Title:</b></button>{{book.title}}<br><br>
-<button type="button" class="btn btn-success" ><b>Written by:</b></button> {{book.writer}}<br><br>
-<button type="button" class="btn btn-success" ><b>About Book:</b> </button>{{book.description}}<br><br>
-<button type="button" class="btn btn-success" ><b>Price:</b></button>$ {{book.cost}}<br></p>
+ 
+ <div class ="panel panel-primary" style="margin-left:3%;margin-right:3%">
+   <div class="panel-heading" ><b>Details of Book:</b></div>
+   <div class="panel-body">
+     <div class="text-left">
+ <p style="text-align:justify">
+<button type="button" class="btn btn-success"><b>Title</b></button><br><br><span class="text-info"><b>{{book.title}}</b></span><hr class="style6">
+<button type="button" class="btn btn-success" ><b>Written by</b></button><br><br><span class="text-info"><b>{{book.writer}}</b></span><hr>
+<button type="button" class="btn btn-success" ><b>About Book</b> </button><br><br><span class="text-info" class="text-center"><b>{{book.description}}</b></span><hr>
+<button type="button" class="btn btn-success" ><b>Price</b></button><br><br><span class="text-info"><b>${{book.cost}}</b></span><hr></p>
+</div>
+</div>
+</div>
 
 <br><br>
 
@@ -20,10 +29,12 @@
     <option value="{{book.title}}">{{book.title}}</option>
   </select> </td></tr>
   </table>
+  <button type="button" class="btn btn-success">
   <input type="hidden" name="currency_code" value="CAD">
   <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
   <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
-  </form>
+ </button> 
+ </form>
 
   <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post" >
     <input type="hidden" name="cmd" value="_s-xclick">
@@ -38,7 +49,7 @@
  {% for post in posts %}
     
  {% if (post.review.id == id) %}
-     <div>{{post.body}}<br> ------------------by {{post.author.username}}</div>
+     <div>{{post.body}}<br> ------------------by {{post.author.username}} ( {{post.timestamp}})</div>
      {%if (current_user.username == post.author.username) %}
 
     <a href="/delete?id={{post.id}}&bookId={{id}}" style="color:red" >Delete</a>
