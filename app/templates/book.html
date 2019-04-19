@@ -24,11 +24,11 @@
 <form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
   <input type="hidden" name="cmd" value="_s-xclick">
   <input type="hidden" name="hosted_button_id" value="2V9A9FAX8TZFQ">
-  <table>
-  <tr><td><input type="hidden" name="on0" value="Buy">Buy</td></tr><tr><td><select name="os0">
-    <option value="{{book.title}}">{{book.title}}</option>
+  <table style="color:green;margin-left:44%">
+  <tr><td><input type="hidden" name="on0" value="Buy"><button class="btn btn-success" >!____Buy____!</button></td></tr><tr><td><select name="os0"><br>
+    <br><option value="{{book.title}}"><b>{{book.title}}</b></option>
   </select> </td></tr>
-  </table>
+  </table><br>
 
   <input type="hidden" name="currency_code" value="CAD">
   <div style="padding-left:45%"><button class="btn btn-success" type="submit">Add to Cart</button></div>
@@ -51,24 +51,30 @@
       {% for post in posts %}
 
       {% if (post.review.id == id) %}
-   <button type="button" class="btn btn-success"><b>{{post.author.username}}</b></button><br><br><span class="text-info"><b>{{post.body}}</b></span><br>
+   <button type="button" class="btn btn-success"><b>{{post.author.username}}</b></button><button type="button" class="btn btn-success" style="float:right"><b>Posted on : {{post.timestamp.strftime("%B %d, %Y")}}</b></button><br><br><span class="text-info"><b>{{post.body}}</b></span><br>
    {%if (current_user.username == post.author.username) %}
-
-    <a href="/delete?id={{post.id}}&bookId={{id}}" style="color:red" >Delete</a>
-    <a href="/update?id={{post.id}}&bookId={{id}}" style="color:blue">Update</a>
+   <br>
+   <a href="/delete?id={{post.id}}&bookId={{id}}"><button type="button" class="btn btn-danger btn-xs">Delete</button></a>
+   <a href="/update?id={{post.id}}&bookId={{id}}" ><button type="button" class="btn btn-primary btn-xs">Update</button></a>
+   
      {% endif %}
      <hr class="style6">
      {% endif %}
    </p>
    {% endfor %}
-   </div>
-   </div>
-   </div>
+  
+   
     
-   <h3>Post a new blog</h3>
+   
    <form action="/add?bookId={{id}}" method="POST">
-   <b>Content:  </b>         <input name="body" style="height:100px"><br><br>
-   <input type="Submit">
+    <div class="form-group">
+      <label for="comment">  <button type="button" class="btn btn-success"><b>Share your views about book :</b></button></button></label>
+      <textarea class="form-control" rows="5" name="body"></textarea>
+    </div> 
+    <button type="Submit" class="btn btn-primary btn-xs" style="color:white">Post Comment</button>
    </form>
+   </div>
+  </div>
+</div>
  
 {% endblock %}
