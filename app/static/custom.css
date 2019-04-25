@@ -15,11 +15,12 @@ footer {
 
 .custom-scrollbar {
     height: 100px;
+    color: black;
     overflow-y: hidden;
 }
 
 .frame {
-    padding: 5px;
+    padding: 10px;
     margin: 2px;
     border-top-style: solid;
     border-bottom-style: solid;
@@ -36,7 +37,7 @@ a:link {
 /* visted link */
 a:visited{
     text-decoration: none;
-    color: #6953B8;
+    color: black;
 }
 
 /* mouse over link */
@@ -44,4 +45,6 @@ a:hover{
     color: #B3A20C;
 }
 
-
+.container{
+    background-color: #C0C0C0;
+}

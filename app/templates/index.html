@@ -41,18 +41,18 @@
 
 <div class="list-unstyled">
     {% for book in books %}
-    <div class="frame">
-        <li class="media">
-            <img class="mb-4 mr-4" src="{{book.url}}" class="img-responsive" 
+    <div class="panel panel-primary" style="margin-left:3%;margin-right:3%">
+        <div class="panel-heading" ><b>{{book.title}}</b></div>
+        <div class="panel-body">
+            <img class="mb-4" src="{{book.url}}" class="img-responsive" 
             style="width:10%" alt="Book Image">
             <div class="media-body">
-                <h5 class="mt-0 mb-1"><a href="/book?id={{book.id}}">{{book.title}}</a></h5>
                 <div class="custom-scrollbar">
                     {{book.description}}<br>
                 </div>
             </div>
             ${{book.cost}}<br>
-        </li>
+        </div>
     </div>
     {% endfor %}
 </div>
