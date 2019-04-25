@@ -11,7 +11,6 @@ Planned Technologies
 * Flask
 * SQLAlchemy
 * Docker/Docker-Compose
-* OAuth
 * Bootstrap
 * CKEditor
 * More ....
