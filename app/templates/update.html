@@ -4,25 +4,48 @@
 
 {% block content %}
  
- <img src="{{book.url}}" alt=book height="600px" width="450px"><br>
- <b>Title: </b> {{book.title}}<br>
-<b>About Book: </b> {{book.description}}<br>
-<b>Price: $</b>{{book.cost}}<br>
-<b>Copies left: </b> {{book.quantity}}<br><br><br>
-<b>Reviews about book : </b><br><br><br>
- {% for post in posts %}
-    {% if (post.review.title == book.title) %}
-     {% if (post.id ==id) %}
-     <h3>Update Post:</h3>
-     <form action="/modify?bookId={{bookId}}&id={{id}}" method="POST">
-    <b>Updated Body: </b> <input name="body" style="height:100px"><br><br>
-    <input type="Submit">
-    </form>
-    {% else %}
-     <div>{{post.body}}<br> ------------------by {{post.author.username}}</div>
-     {% endif %} 
-   {% endif %}
-   <br>
+ <div class="container">
+    <img src="{{book.url}}" style="border:8px solid white;padding:5px" class="rounded mx-auto d-block" class="img-rounded"   alt=book image height="350px" width="300px"><br>
+
+<div class ="panel panel-primary" style="margin-left:3%;margin-right:3%">
+<div class="panel-body">
+     <div class="text-left">
+ <p style="text-align:justify">    
+<button type="button" class="btn btn-success"><b>Title: </b></button><br><br><span class="text-info"><b>{{book.title}}</b></span><hr class="style6">
+<button type="button" class="btn btn-success"><b>About Book: </b></button><br><br><span class="text-info"><b>{{book.description}}</b></span><hr>
+<button type="button" class="btn btn-success"><b>Price: $</b></button><br><br><span class="text-info"><b>{{book.cost}}</b></span><hr>
+<button type="button" class="btn btn-success"><b>Copies left: </b></button><br><br><span class="text-info"><b> {{book.quantity}}</b></span><hr></p>
+</div>
+</div>
+</div>
+<br>
+<br>
+
+
+<div class ="panel panel-primary" style="margin-left:3%;margin-right:3%">
+      <div class="panel-heading" ><b>Reviews about Book:</b></div>
+      <div class="panel-body">
+        <div class="text-left">
+    <p style="text-align:justify">
+      {% for post in posts %}
+    
+      {% if (post.review.title == book.title) %}
+        {% if (post.id ==id) %}
+      <h3>Update Post:</h3>
+      <form action="/modify?bookId={{bookId}}&id={{id}}" method="POST">
+      <b>Updated Body: </b> <input name="body" style="height:100px"><br><br>
+      <input type="Submit">
+      </form>
+      {% else %}
+      <button type="button" class="btn btn-success"><b>{{post.author.username}} posted</b></button><br><br>
+      <span class="text-info">{{post.body}}</span>
+        {% endif %} 
+      {% endif %}
+   <br></p>
    {% endfor %}
- 
+ </div>
+</div>
+</div>
+</div>
+
 {% endblock %}
