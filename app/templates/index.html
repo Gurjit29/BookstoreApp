@@ -5,56 +5,70 @@
 {% block content %}
     
 <div class="jumbotron text-center">
-    <h1>Welcome {{current_user.username }}</h1>
+    <h1 class="display-4">Welcome {{current_user.username }}</h1>
+    <p class="lead">This is a test site.</p>
 </div>
 
 <div class="container-fluid bg-3 text-center">
     <h3>New Books</h3><br>
     <div class="row">
-    {% for book in books %}
-    <div class="col-sm-3">
-        <h5><a href="/book?id={{book.id}}">{{book.title}}</a></h5>
-        <a href="/book?id={{book.id}}">
-        <img class="mb-4" src="{{book.url}}" class="img-responsive"
-        style="width:25%" alt="Book Image">
-    </a>
-    </div>
-    <br>
-    {% endfor %}
-    </div>
-</div>
-
-<div class="container-fluid bg-2 text-center">
-    <h3>Top Picks</h3><br>
-    <div class="row">
-    {% for book in books %}
-    <div class="col-sm-3">
-        <h5><a href="/book?id={{book.id}}">{{book.title}}</a></h5>
-        <a href="/book?id={{book.id}}">
-        <img class="mb-4" src="{{book.url}}" class="img-responsive" 
-        style="width:25%" alt="Book Image">
-        </a>
-    </div>
-    {% endfor %}
-    </div>
-</div>
-
-<div class="list-unstyled">
-    {% for book in books %}
-    <div class="panel panel-primary" style="margin-left:3%;margin-right:3%">
-        <div class="panel-heading" ><b>{{book.title}}</b></div>
-        <div class="panel-body">
-            <img class="mb-4" src="{{book.url}}" class="img-responsive" 
-            style="width:10%" alt="Book Image">
-            <div class="media-body">
-                <div class="custom-scrollbar">
-                    {{book.description}}<br>
+        {% for book in books[:4]%}
+        <div class="col-sm-3">
+            <div class="card w-40 h-100 text-center bg-light" style="width: 18rem;">
+                <img class="card-img-top" src="{{book.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{book.title}}</h5>
+                </div>
+                <div class="card-footer">
+                    <a href="/book?id={{book.id}}" class="btn btn-info">More Info</a>
                 </div>
             </div>
-            ${{book.cost}}<br>
         </div>
+        {% endfor %}
     </div>
-    {% endfor %}
+</div>
+
+<hr class="style1">
+
+<div class="container-fluid bg-3 text-center">
+    <h3>Top Books</h3><br>
+    <div class="row">
+        {% for book in books[3:]%}
+        <div class="col-sm-3">
+            <div class="card w-40 h-100 text-center bg-light" style="width: 18rem;">
+                <img class="card-img-top" src="{{book.url}}" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">{{book.title}}</h5>
+                </div>
+                <div class="card-footer">
+                    <a href="/book?id={{book.id}}" class="btn btn-info">More Info</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<hr class="style1">
+
+<div class="container-fluid mt-4">
+    <div class="list-unstyled">
+        {% for book in books %}
+        <div class="panel panel-primary" style="margin-left:3%;margin-right:3%">
+            <div class="panel-heading" href="/book?id={{book.id}}"><b>{{book.title}}</b></div>
+            <div class="panel-body">
+                <img class="mb-4" src="{{book.url}}" class="img-responsive" 
+                style="width:10%" alt="Book Image">
+                <div class="media-body">
+                    <div class="custom-scrollbar">
+                        {{book.description}}<br>
+                    </div>
+                </div>
+                ${{book.cost}}<br>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}
