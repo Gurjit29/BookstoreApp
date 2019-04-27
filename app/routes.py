@@ -124,7 +124,7 @@ def passwordReset():
      db.session.add(user)
      db.session.commit()
      print('USER ---key is ',user.key,' ------- ',user.username)
-     msg = Message("Hello",sender="BookSellersUFV@gmail.com",recipients=[user.email],html=render_template('verify.html',email=user.email,username=user.username,key=key))
+     msg = Message("Password Reset Link !",sender="BookSellersUFV@gmail.com",recipients=[user.email],html=render_template('verify.html',email=user.email,username=user.username,key=key))
      mail.send(msg)
      return "Message sent!"        
    return render_template('password.html',form=form)
