@@ -6,7 +6,7 @@
     
 <div class="jumbotron text-center">
     <h1 class="display-4">Welcome {{current_user.username }}</h1>
-    <p class="lead">This is a test site.</p>
+    <p class="lead">Explore this website to buy amazing books!</p>
 </div>
 
 <div class="container-fluid bg-3 text-center">
@@ -33,7 +33,7 @@
 <div class="container-fluid bg-3 text-center">
     <h3>Top Books</h3><br>
     <div class="row">
-        {% for book in books[3:]%}
+        {% for book in books[4:]%}
         <div class="col-sm-3">
             <div class="card w-40 h-100 text-center bg-light" style="width: 18rem;">
                 <img class="card-img-top" src="{{book.url}}" alt="Card image cap">

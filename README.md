@@ -23,6 +23,11 @@ Colors
 * #6953B8 - Complementary Grayish Purple
 * #5A2BFF - Complementary Blueish Purple
 
+Existing Users
+--------------------
+* Smith | Password : cat
+* Gurjit | Password : 1234
+
 References for Code
 -------------------
 * [Flask MegaTutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
