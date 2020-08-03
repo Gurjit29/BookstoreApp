@@ -7,6 +7,7 @@ RUN initial.sh to install all pip and npm packages
 
 ## Core functionalities
 ![](https://github.com/Gurjit29/BookstoreApp/blob/master/app/static/bookstore.gif)
+## --------------------------------
 ![](https://github.com/Gurjit29/BookstoreApp/blob/master/app/static/bookstore_working.gif)
 
 Planned Technologies
